@@ -3,43 +3,42 @@ import './App.css';
 import Weather from './component/weather';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'weather-icons/css/weather-icons.css';
+import axios from 'axios';
+require('dotenv').config();
 
 function App() {
 	const [query, setQuery] = useState('');
 	const [weather, setWeather] = useState({});
 
 	async function getWeather() {
-		const api = {
-			key: '990c548db80372ce5608848c39a3ac1e',
-			base: 'https://api.openweathermap.org/data/2.5/',
-		};
-
-		const fetchedAPI = await fetch(
-			// 'https://api.openweathermap.org/data/2.5/weather?q=Tokyo,jp&appid=990c548db80372ce5608848c39a3ac1e'
-			`${api.base}weather?q=Tokyo,jp&units=metric&appid=${api.key}`
-		);
-		const res = await fetchedAPI.json();
+		let req = await axios.get(`/weather/${query}`);
+		let res = req.data;
+		console.log(res);
 		setWeather(res);
 	}
 
-	useEffect(() => {
-		getWeather();
-	}, []);
+	function handleKeyPress(event) {
+		if (event.key === 'Enter') {
+			getWeather();
+		}
+	}
+
+	useEffect(getWeather, []);
 
 	return (
-		<div className="App">
-			<div className="search-box">
+		<div className="app">
+			<main>
+				<div className="search-box"></div>
 				<input
 					type="text"
 					className="search-bar"
 					placeholder="Search..."
 					onChange={(e) => setQuery(e.target.value)}
 					value={query}
-					onKeyPress={getWeather}
+					onKeyPress={handleKeyPress}
 				/>
-
 				<Weather weather={weather} />
-			</div>
+			</main>
 		</div>
 	);
 }

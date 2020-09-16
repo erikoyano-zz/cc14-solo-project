@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import rainy from '../video/rainy.mp4';
+import cloudy from '../video/cloudy.mov';
+import sunny from '../video/sunny.mov';
 
-function Weather(props) {
+export default function Weather(props) {
 	const { weather } = props;
-	console.log(weather);
+	const [background, setBackground] = useState('asdf');
+
+	useEffect(backgroundImage, [weather]);
 
 	function temperature() {
 		if (weather.main) {
-			return <h1>{weather.main.temp}&deg;</h1>;
+			return <h1>{Math.floor(weather.main.temp)}&deg;</h1>;
 		}
 	}
 
-	function country() {
+	function location() {
 		if (weather.sys) {
 			return (
-				<h1>
+				<div>
 					{weather.name}, {weather.sys.country}
-				</h1>
+				</div>
 			);
 		}
 	}
@@ -23,8 +28,12 @@ function Weather(props) {
 		if (weather.main) {
 			return (
 				<h3>
-					<span className="min">{weather.main.temp_min}&deg;</span>
-					<span className="max">{weather.main.temp_max}&deg;</span>
+					<span className="min">
+						min {Math.floor(weather.main.temp_min)}&deg;
+					</span>
+					<span className="max">
+						max {Math.floor(weather.main.temp_max)}&deg;
+					</span>
 				</h3>
 			);
 		}
@@ -36,20 +45,96 @@ function Weather(props) {
 		}
 	}
 
+	function weatherIcon() {
+		if (weather.weather) {
+			if (weather.weather[0].id >= 200 && weather.weather[0].id <= 232) {
+				return <i className={`wi wi-thunder display-1`} />;
+			}
+			if (weather.weather[0].id >= 500 && weather.weather[0].id <= 531) {
+				return <i className={`wi wi-rain display-1`} />;
+			}
+			if (weather.weather[0].id >= 801 && weather.weather[0].id <= 804) {
+				return <i className={`wi wi-cloud display-1`} />;
+			}
+			if (weather.weather[0].id >= 800) {
+				return <i className={`wi wi-day-sunny display-1`} />;
+			}
+		}
+	}
+
+	function backgroundImage() {
+		if (weather.weather) {
+			// if (weather.weather[0].id >= 200 && weather.weather[0].id <= 232) {
+			// 	setBackground(thunder);
+			// }
+			if (weather.weather[0].id >= 500 && weather.weather[0].id <= 531) {
+				return setBackground(rainy);
+			}
+			if (weather.weather[0].id >= 801 && weather.weather[0].id <= 804) {
+				return setBackground(cloudy);
+			}
+			if (weather.weather[0].id >= 800) {
+				return setBackground(sunny);
+			}
+		}
+	}
+
+	function others() {
+		if (weather.main) {
+			return (
+				<>
+					<h3>
+						feels like: {Math.floor(weather.main.feels_like)}&deg; humidity:{' '}
+						{weather.main.humidity} pressure: {weather.main.pressure}
+					</h3>
+				</>
+			);
+		}
+	}
+
+	function sunTime() {
+		if (weather.sys) {
+			const date = new Date(weather.sys.sunrise * 1000);
+			const hours = date.getHours();
+			const minutes = '0' + date.getMinutes();
+			const formattedSunrise = hours + ':' + minutes.substr(-2);
+
+			const date2 = new Date(weather.sys.sunset * 1000);
+			const hours2 = date2.getHours();
+			const minutes2 = '0' + date2.getMinutes();
+			const formattedSunset = hours2 + ':' + minutes2.substr(-2);
+
+			return (
+				<>
+					<h3>
+						Sunrise: {formattedSunrise} Sunset: {formattedSunset}
+					</h3>
+				</>
+			);
+		}
+	}
+
 	return (
 		<div className="container">
-			<div className="cards">
-				<h1>{country()} </h1>
-				<h5 className="icon">
-					<i className="wi wi-day-sunny display-1" />
-				</h5>
+			<video
+				className="background-video"
+				src={background}
+				type="video/mp4"
+				width="100%"
+				autoPlay
+				loop
+				muted
+			/>
+
+			<div className="overlay">
+				<h1 className="location">{location()} </h1>
+				<h5 className="icon">{weatherIcon()} </h5>
 				{temperature()}
 				{weatherDesc()}
-				{/**show max and min temp */}
 				{minmaxTemp()}
+				{others()}
+				{sunTime()}
 			</div>
 		</div>
 	);
 }
-
-export default Weather;
