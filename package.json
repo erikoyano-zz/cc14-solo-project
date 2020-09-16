@@ -42,5 +42,6 @@
 	"proxy": "http://localhost:4000",
 	"main": "index.js",
 	"repository": "https://github.com/erikoyano/cc14-solo-project.git",
-	"license": "MIT"
+	"license": "MIT",
+	"heroku buildpacks": "set mars/create-react-app -a weather-app"
 }
