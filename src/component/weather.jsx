@@ -11,7 +11,7 @@ export default function Weather(props) {
 
 	function temperature() {
 		if (weather.main) {
-			return <h1>{Math.floor(weather.main.temp)}&deg;</h1>;
+			return <h1 className="temp">{Math.floor(weather.main.temp)}&deg;</h1>;
 		}
 	}
 
@@ -41,7 +41,7 @@ export default function Weather(props) {
 
 	function weatherDesc() {
 		if (weather.weather) {
-			return <h1>{weather.weather[0].description}</h1>;
+			return <h1 id="weatherDesc">{weather.weather[0].description}</h1>;
 		}
 	}
 
@@ -84,8 +84,11 @@ export default function Weather(props) {
 			return (
 				<>
 					<h3>
-						feels like: {Math.floor(weather.main.feels_like)}&deg; humidity:{' '}
-						{weather.main.humidity} pressure: {weather.main.pressure}
+						{/* feels like: {Math.floor(weather.main.feels_like)}&deg;{' '}*/}
+						<i className={`wi wi-humidity display-7`} /> humidity:{' '}
+						{weather.main.humidity}
+						<i className={`wi wi-barometer display-7`} />
+						pressure: {weather.main.pressure}
 					</h3>
 				</>
 			);
@@ -101,13 +104,16 @@ export default function Weather(props) {
 
 			const date2 = new Date(weather.sys.sunset * 1000);
 			const hours2 = date2.getHours();
-			const minutes2 = '0' + date2.getMinutes();
-			const formattedSunset = hours2 + ':' + minutes2.substr(-2);
+			const minutes2 = '' + '0' + date2.getMinutes();
+			const formattedSunset = '' + hours2 + ':' + minutes2.substr(-2);
 
 			return (
 				<>
 					<h3>
-						Sunrise: {formattedSunrise} Sunset: {formattedSunset}
+						<i className={`wi wi-sunrise display-7`} />
+						Sunrise:
+						{formattedSunrise} <i className={`wi wi-sunset display-7`} />
+						Sunset: {formattedSunset}
 					</h3>
 				</>
 			);
@@ -130,7 +136,7 @@ export default function Weather(props) {
 				<h1 className="location">{location()} </h1>
 				<h5 className="icon">{weatherIcon()} </h5>
 				{temperature()}
-				{weatherDesc()}
+				<div id="weatherDesc">{weatherDesc()}</div>
 				{minmaxTemp()}
 				{others()}
 				{sunTime()}
