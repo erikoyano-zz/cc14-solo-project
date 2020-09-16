@@ -16,9 +16,9 @@ app.use(express.static(path.resolve(__dirname, '..', 'build')));
 // 	res.send('hello backend');
 // });
 
-app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, 'app.js'));
-});
+// app.get('*', (req, res) => {
+// 	res.sendFile(path.resolve(__dirname, 'app.js'));
+// });
 
 // app.get('*', (req, res) => {
 // 	res.sendFile(path.resolve(__dirname, '..', 'server'));
