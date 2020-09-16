@@ -128,7 +128,6 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
 .overlay {
 	position: absolute;
 	top: 29%;
@@ -137,11 +136,9 @@ table {
 	text-align: center;
 	padding: 80px;
 
-
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-
 
 	color: rgb(247, 247, 247);
 	text-shadow: 3px 3px rgba(50, 50, 100, 0.5);
@@ -210,8 +207,6 @@ main {
 .location {
 	font-size: 80px;
 }
-
-
 
 .icon {
 	font-size: 100px;
