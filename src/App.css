@@ -135,7 +135,14 @@ table {
 	left: 33%;
 	z-index: 1;
 	text-align: center;
-	padding: 40px;
+	padding: 80px;
+
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+
 	color: rgb(247, 247, 247);
 	text-shadow: 3px 3px rgba(50, 50, 100, 0.5);
 	box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
@@ -157,7 +164,7 @@ table {
 
 main {
 	min-height: 1000vh;
-	background-color: rgb(220, 240, 215);
+	background-color: rgb(222, 246, 248);
 	padding: 5px;
 	margin-left: 0;
 	width: 100%;
@@ -204,15 +211,7 @@ main {
 	font-size: 80px;
 }
 
-/* .container {
-  top: 0;
-  bottom: 0;
-  width: 1000px;
-  height: 100%;
-  margin-left: 0;
-  margin-right: 0;
 
-} */
 
 .icon {
 	font-size: 100px;
@@ -229,5 +228,6 @@ main {
 
 h3 {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-around;
+	word-spacing: 5px;
 }
