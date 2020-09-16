@@ -16,9 +16,9 @@ app.get('/upload', (req, res) => {
 	res.send('hello backend');
 });
 
-app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, '..', 'server'));
-});
+// app.get('*', (req, res) => {
+// 	res.sendFile(path.resolve(__dirname, '..', 'server'));
+// });
 
 app.get('/weather/:city', async (req, res) => {
 	try {
