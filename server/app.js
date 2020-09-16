@@ -20,6 +20,10 @@ app.get('*', (req, res) => {
 	res.sendFile(path.resolve(__dirname, 'app.js'));
 });
 
+// app.get('*', (req, res) => {
+// 	res.sendFile(path.resolve(__dirname, '..', 'server'));
+// });
+
 app.get('/weather/:city', async (req, res) => {
 	try {
 		const city = req.params.city;
