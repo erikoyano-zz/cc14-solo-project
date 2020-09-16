@@ -1,4 +1,4 @@
-html,
+/* html,
 body,
 div,
 span,
@@ -88,7 +88,7 @@ video {
 }
 
 /* HTML5 display-role reset for older browsers */
-article,
+/* article,
 aside,
 details,
 figcaption,
@@ -123,11 +123,13 @@ q:after {
 	content: '';
 	content: none;
 }
+*/
 
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
 .overlay {
 	position: absolute;
 	top: 29%;
@@ -135,6 +137,7 @@ table {
 	z-index: 1;
 	text-align: center;
 	padding: 80px;
+	margin-top: 2rem;
 
 	display: flex;
 	flex-direction: column;
@@ -226,4 +229,5 @@ h3 {
 	justify-content: space-around;
 	word-spacing: 5px;
 	font-size: 40px;
+	margin-top: 2rem;
 }
