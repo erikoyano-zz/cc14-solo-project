@@ -17,7 +17,7 @@ app.use(express.static(path.resolve(__dirname, '..', 'build')));
 // });
 
 app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, '..', 'index.js'));
+	res.sendFile(path.resolve(__dirname, 'index.js'));
 });
 
 app.get('/weather/:city', async (req, res) => {
