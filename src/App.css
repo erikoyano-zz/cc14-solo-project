@@ -225,4 +225,5 @@ h3 {
 	display: flex;
 	justify-content: space-around;
 	word-spacing: 5px;
+	font-size: 40px;
 }
