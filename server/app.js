@@ -8,12 +8,16 @@ const api = {
 	base: 'https://api.openweathermap.org/data/2.5/',
 };
 
-app.use(express.static(path.resolve(__dirname, 'public')));
+app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
 //endpoints to be written HERE
 
-app.get('/upload', (req, res) => {
-	res.send('hello backend');
+// app.get('/upload', (req, res) => {
+// 	res.send('hello backend');
+// });
+
+app.get('*', (req, res) => {
+	res.sendFile(path.resolve(__dirname, '..', 'index.js'));
 });
 
 app.get('/weather/:city', async (req, res) => {
