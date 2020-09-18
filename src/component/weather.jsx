@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import rainy from '../video/rainy.mp4';
 import cloudy from '../video/cloudy.mov';
 import sunny from '../video/sunny.mov';
+import { Container, Col, Row } from 'react-bootstrap';
 
 export default function Weather(props) {
 	const { weather } = props;
@@ -82,15 +83,21 @@ export default function Weather(props) {
 	function others() {
 		if (weather.main) {
 			return (
-				<>
-					<h3>
-						{/* feels like: {Math.floor(weather.main.feels_like)}&deg;{' '}*/}
-						<i className={`wi wi-humidity display-7`} /> humidity:{' '}
-						{weather.main.humidity}
-						<i className={`wi wi-barometer display-7`} />
-						pressure: {weather.main.pressure}
-					</h3>
-				</>
+				<h3>
+					<Container>
+						<Row>
+							<Col>
+								<i className={`wi wi-humidity display-7`} /> humidity:{' '}
+								{weather.main.humidity}
+							</Col>
+
+							<Col>
+								<i className={`wi wi-barometer display-7`} /> pressure:{' '}
+								{weather.main.pressure}
+							</Col>
+						</Row>
+					</Container>
+				</h3>
 			);
 		}
 	}
@@ -110,10 +117,19 @@ export default function Weather(props) {
 			return (
 				<>
 					<h3>
-						<i className={`wi wi-sunrise display-7`} />
-						Sunrise:
-						{formattedSunrise} <i className={`wi wi-sunset display-7`} />
-						Sunset: {formattedSunset}
+						<Container>
+							<Row>
+								<Col className="desc">
+									<i className={`wi wi-sunrise display-7`} />
+									Sunrise: {formattedSunrise}
+								</Col>
+
+								<Col className="desc">
+									<i className={`wi wi-sunset display-7`} />
+									Sunset: {formattedSunset}
+								</Col>
+							</Row>
+						</Container>
 					</h3>
 				</>
 			);
@@ -121,27 +137,47 @@ export default function Weather(props) {
 	}
 
 	return (
-		<div className="container">
-			<video
-				className="background-video"
-				src={background}
-				type="video/mp4"
-				width="100%"
-				autoPlay
-				loop
-				muted
-			/>
+		<Container>
+			<Row>
+				<Col md="auto">
+					<div className="container">
+						<video
+							className="background-video"
+							src={background}
+							type="video/mp4"
+							width="100%"
+							autoPlay
+							loop
+							muted
+						/>
+						<Col>
+							<Row>
+								<Col>
+									<div className="overlay">
+										<Col>
+											<h1 className="location">{location()} </h1>
+										</Col>
 
-			<div className="overlay">
-				<h1 className="location">{location()} </h1>
-				<h5 className="icon">{weatherIcon()} </h5>
-				{temperature()}
-				<div id="weatherDesc">{weatherDesc()}</div>
-				{minmaxTemp()}
-				{others()}
-				{sunTime()}
-			</div>
-		</div>
+										<Col>
+											<h5 className="icon">{weatherIcon()} </h5>
+										</Col>
+
+										<Col>{temperature()}</Col>
+
+										<Col>
+											<div id="weatherDesc">{weatherDesc()}</div>
+										</Col>
+
+										<Col>{minmaxTemp()}</Col>
+										<Col>{others()}</Col>
+										<Col>{sunTime()}</Col>
+									</div>
+								</Col>
+							</Row>
+						</Col>
+					</div>
+				</Col>
+			</Row>
+		</Container>
 	);
 }
-//asdfadf

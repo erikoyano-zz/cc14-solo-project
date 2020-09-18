@@ -1,3 +1,4 @@
+import { Container, Col, Row } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Weather from './component/weather';
@@ -26,22 +27,30 @@ function App() {
 	useEffect(getWeather, []);
 
 	return (
-		<div className="app">
-			<main>
-				<div className="search-box"></div>
-				<input
-					type="text"
-					className="search-bar"
-					placeholder="Search by Country or City..."
-					onChange={(e) => setQuery(e.target.value)}
-					value={query}
-					onKeyPress={handleKeyPress}
-				/>
-				<Weather weather={weather} />
-			</main>
-		</div>
+		<Container fluid>
+			<Row>
+				<Col>
+					<div className="app">
+						<main>
+							<Col md="auto">
+								<div className="search-box"></div>
+
+								<input
+									type="text"
+									className="search-bar"
+									placeholder="Search by Country or City..."
+									onChange={(e) => setQuery(e.target.value)}
+									value={query}
+									onKeyPress={handleKeyPress}
+								/>
+							</Col>
+							<Weather weather={weather} />
+						</main>
+					</div>
+				</Col>
+			</Row>
+		</Container>
 	);
 }
 
 export default App;
-//asdf

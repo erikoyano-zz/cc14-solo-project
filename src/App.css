@@ -1,4 +1,4 @@
-/* html,
+html,
 body,
 div,
 span,
@@ -87,8 +87,8 @@ video {
 	vertical-align: baseline;
 }
 
-/* HTML5 display-role reset for older browsers */
-/* article,
+
+article,
 aside,
 details,
 figcaption,
@@ -123,21 +123,24 @@ q:after {
 	content: '';
 	content: none;
 }
-*/
+
 
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
 
+
+
 .overlay {
-	position: absolute;
-	top: 29%;
+	/* position: absolute; */
+	top: 20%;
 	left: 33%;
 	z-index: 1;
 	text-align: center;
-	padding: 80px;
-
+	padding: 90px;
+	letter-spacing: 5px;
+	margin-top: 100px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -181,7 +184,7 @@ main {
 	width: 100%;
 	padding: 20px;
 	text-align: center;
-	font-size: 30px;
+	font-size: 5vm;
 	font-family: 'Montserrat', sans-serif;
 
 	appearance: none;
@@ -197,7 +200,6 @@ main {
 }
 
 .background-video {
-	transition: 0.4s ease-in;
 	object-fit: cover;
 	width: 100vw;
 	height: 100vh;
@@ -207,26 +209,30 @@ main {
 }
 
 .location {
-	font-size: 80px;
+	font-size: 10vw;
 }
 
 .icon {
-	font-size: 100px;
+	font-size: 100vm;
 }
 
 #weatherDesc {
-	font-size: 40px;
+	font-size: 10vw;
 	font-weight: 600;
 }
 
 .temp {
-	font-size: 80px;
+	font-size: 8vw;
 }
 
 h3 {
 	display: flex;
 	justify-content: space-around;
 	word-spacing: 5px;
-	font-size: 40px;
+	font-size: 2vw;
 	margin-top: 2rem;
+}
+
+.desc {
+	font-size: 2vm;
 }
